@@ -77,7 +77,7 @@ double BehaviorPlannerFSM::get_look_ahead_distance(const State& ego_state) {
   // TODO-Lookahead: One way to find a reasonable lookahead distance is to find
   // the distance you will need to come to a stop while traveling at speed V and
   // using a comfortable deceleration.
-  auto look_ahead_distance = velocity_mag * velocity_mag / 2 * accel_mag;  // <- Fix This
+  auto look_ahead_distance = velocity_mag * _lookahead_time + 0.5 * accel_mag * _lookahead_time * _lookahead_time	;  // <- Fix This
 
   // LOG(INFO) << "Calculated look_ahead_distance: " << look_ahead_distance;
 
@@ -165,7 +165,7 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
     // TODO-maintain the same goal when in DECEL_TO_STOP state: Make sure the
     // new goal is the same as the previous goal (_goal). That way we
     // keep/maintain the goal at the stop line.
-       //goal = ;  // <- Fix This
+       goal = _goal;  // <- Fix This
 
     // TODO: It turns out that when we teleport, the car is always at speed
     // zero. In this the case, as soon as we enter the DECEL_TO_STOP state,
@@ -194,7 +194,7 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
     // TODO-maintain the same goal when in STOPPED state: Make sure the new goal
     // is the same as the previous goal. That way we keep/maintain the goal at
     // the stop line. goal = ...;
-       goal = ego_state;  // Keep previous goal. Stay where you are. // <- Fix This
+       goal = _goal;  // Keep previous goal. Stay where you are. // <- Fix This
 
     long long stopped_secs =
         std::chrono::duration_cast<std::chrono::seconds>(
