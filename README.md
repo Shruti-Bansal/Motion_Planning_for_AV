@@ -20,7 +20,7 @@ After the implementation in code, the car behaves well in CARLA simulator avoidi
 <img src="https://github.com/Shruti-Bansal/Motion_Planning_for_AV/blob/main/images/pic2.png">
 <img src="https://github.com/Shruti-Bansal/Motion_Planning_for_AV/blob/main/images/pic3.png">
 
-#Summary
+# Summary
 The traditional hierarchical planner has three layers: Behavior planning, Trajectory generation and Motion planning.
 
 Behavior planning: Finite state machines is used to divide the behavior actions on the road into finite states, such as, follow lanes, stop, decel to stop, change lanes.Cost functions are used to make beahvior level decisions.
